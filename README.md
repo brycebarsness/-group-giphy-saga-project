@@ -7,11 +7,9 @@ In this project you will need to utilize React, Redux, Redux-Saga and integrate 
 ## Team Setup
 Do not clone this repository. Instead, have one person create a new repo by clicking on the **Use this template** button to make a copy. Make your team collaborators on the new repo you have created. The rest of the team members that did not make the initial repo will clone directly from the person who created the new repo, **do NOT fork** the repo.
 
-
 ## Create Database and Tables
 
 See the `database.sql` file for database setup and details. It offers some of the SQL to get you started but you'll need to set up your tables and the relationships between them.
-
 
 ## Development Setup Instructions
 
@@ -21,11 +19,9 @@ See the `database.sql` file for database setup and details. It offers some of th
 * Run `npm run client` to start the client
 * Navigate to `localhost:3000`
 
-
 ## Base Features
 
 You will need 2 views for the Base Features. You should put some thought into the UI and how to style it.
-
 
 ### Search View
 
@@ -34,14 +30,12 @@ You will need 2 views for the Base Features. You should put some thought into th
 - Display the results on the DOM.
 - Allow a user to Favorite any of the resulting images. You'll need to think about what information to save to your own database. Generally you only store the minimum needed to show this image again on the **Favorites View**.
 
-
 ### Favorites View
 
 - Allow a user to see all of the Giphy images they have Favorited. The actual images need to appear on the DOM.
 - Allow a user to set a category for a favorite image.
     - Each favorite image can only have 1 category at a time.
     - The category needs to be one of the categories in the database.
-
 
 ## Existing Routes
 
@@ -55,7 +49,6 @@ You are given two router modules on the server with stubs for the routes you may
 
 - `PUT /api/favorite` (incomplete)
     - For setting a category on an image. It expects both a query parameter and a data body. Feel free to change it as needed.
-
 
 ## Stretch Features
 
