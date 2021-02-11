@@ -12,6 +12,13 @@ function* rootSaga() {
     yield takeEvery("FETCH_GIFS", fetchGifs);
 }
 
+// function* searchGifs(action) {
+//     try {
+//         const response = yield axios.get('/api/gifs', action.payload);
+//         yield put ({})
+//     }
+// } 
+
 function* fetchGifs(action) {
     try {
         const response = yield axios.get('/api/favs');
