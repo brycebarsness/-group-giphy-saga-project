@@ -29,6 +29,8 @@ if (process.env.DATABASE_URL) {
 } else {
   // pg Pool configuration for local development
   config = {
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
     host: 'localhost', // Server hosting the postgres database
     port: 5432, // env var: PGPORT
     database: 'giphy_search_favorites', // change this line if you want to use a different database
