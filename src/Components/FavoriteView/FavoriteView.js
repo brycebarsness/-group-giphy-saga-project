@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 function FavoriteView() {
@@ -10,17 +10,17 @@ function FavoriteView() {
     dispatch({ type: "FETCH_FAV" });
   }, []);
 
-  handleChange = (event) => {
+  function handleChange(event) {
     setCategory(event.target.value);
-  };
+  }
 
-  dispatchCategory = (event, id) => {
+  function dispatchCategory(event, id) {
     dispatch({
       type: "SET_CATEGORY",
       payload: [category, id],
     });
     setCategory("");
-  };
+  }
 
   return (
     <div className="gif-gallery">

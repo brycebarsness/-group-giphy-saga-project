@@ -17,7 +17,7 @@ function* rootSaga() {
 
 function* fetchFavSaga(action) {
   try {
-    const response = yield axios.get("/api/favs");
+    const response = yield axios.get("/api/favorite");
     yield put({ type: "SET_FAVS", payload: response.data });
   } catch (error) {
     console.log(error);
