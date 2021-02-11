@@ -9,10 +9,13 @@ import { takeEvery, put } from "redux-saga/effects";
 import App from "./Components/App/App";
 
 function* rootSaga() {
-  yield takeEvery("FETCH_GIFS", fetchGifs);
+  yield takeEvery("FETCH_GIFS", fetchGiphySaga);
+  yield takeEvery("FETCH_FAV", fetchFavSaga);
+  yield takeEvery("ADD_FAV", addFavSaga);
+  yield takeEvery("SET_CATEGORY", setCategorySaga);
 }
 
-function* fetchGifs(action) {
+function* fetchFavSaga(action) {
   try {
     const response = yield axios.get("/api/favs");
     yield put({ type: "SET_FAVS", payload: response.data });
@@ -20,8 +23,46 @@ function* fetchGifs(action) {
     console.log(error);
   }
 }
+function* fetchGiphySaga(action) {
+  console.log("in fetchGiphySaga");
+  try {
+    const response = yield axios.get(`/api/search/${action.payload}`);
+    yield put({ type: "SET_GIPHY", payload: response.data.data });
+  } catch (error) {
+    console.log("get SEARCH request failed", error);
+  }
+}
 
-const favGifList = (state = [], action) => {
+function* addFavSaga(action) {
+  console.log("in addFavSaga");
+  try {
+    yield axios.post("/api/favorite", action.payload);
+  } catch (err) {
+    console.log("error in POST addFavSaga", err);
+  }
+}
+
+function* setCategorySaga(action) {
+  console.log("in setCategorySaga");
+  try {
+    yield axios.put(`/api/favorite/${action.payload[1]}`, action.payload[0]);
+  } catch (error) {
+    console.log("get SEARCH failed", error);
+  }
+}
+
+//%%%%%%%%%%%%%% reducers here %%%%%%%%%%%%%%%%
+
+const fetchReducer = (state = [], action) => {
+  switch (action.type) {
+    case "SET_GIPHY":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const setFavReducer = (state = [], action) => {
   switch (action.type) {
     case "SET_FAVS":
       return [...action.payload];
@@ -34,7 +75,9 @@ const SagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
   combineReducers({
-    favGifList,
+    fetchReducer,
+    setFavReducer,
+    // favGifList,
   }),
   applyMiddleware(logger, SagaMiddleware)
 );
