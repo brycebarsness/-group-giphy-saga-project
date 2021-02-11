@@ -5,7 +5,9 @@ const router = express.Router();
 
 // return all favorite images
 router.get('/', (req, res) => {
-    const searchTerm = req.body.search;
+    console.log('req body is', req.body);
+    const searchTerm = req.body.query;
+    console.log(`query is ${searchTerm}`);
     const GIPHY_URL = `https://api.giphy.com/v1/gifs/search?api_key=${process.env.GIPHY_API_KEY}&q=${searchTerm}&limit=10`;
     console.log(`GIPHY URL is ${GIPHY_URL}`);
     axios.get(GIPHY_URL).then ((response) => {

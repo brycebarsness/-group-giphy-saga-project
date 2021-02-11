@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import axios from 'axios'
 
 function SearchGifs() {
@@ -8,8 +8,10 @@ function SearchGifs() {
     const dispatch = useDispatch();
 
     const getGif = (search) => {
-        axios.get('/api/gifs', {search}).then(response => {
+        console.log(`incoming search is ${search}`);
+        axios.get('/api/gifs', {query: search}).then(response => {
             console.log(response);
+            dispatch({type: 'SEARCH_GIF', payload: response.data})
         })
     }
 

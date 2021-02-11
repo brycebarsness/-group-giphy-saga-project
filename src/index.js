@@ -19,6 +19,7 @@ function* rootSaga() {
 //     }
 // } 
 
+
 function* fetchGifs(action) {
     try {
         const response = yield axios.get('/api/favs');
@@ -40,6 +41,7 @@ const favGifList = (state = [], action) => {
 const searchedGifList = (state = [], action) => {
     switch (action.type) {
         case "SEARCH_GIF":
+            console.log(`Getting gifs...`);
             return [action.payload]
         default:
             return state;
