@@ -8,12 +8,14 @@ function SearchGifs() {
     const dispatch = useDispatch();
 
     const getGif = (search) => {
+        //dispatch ({type: 'SEARCH_GIFS', payload: search})
         console.log(`incoming search is ${search}`);
-        axios.get('/api/gifs', {query: search}).then(response => {
+        axios.get(`/api/gifs/${search}`).then(response => {
             console.log(response);
             dispatch({type: 'SEARCH_GIF', payload: response.data})
         })
     }
+
 
     return(
         <>

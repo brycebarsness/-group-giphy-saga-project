@@ -4,9 +4,10 @@ const axios = require('axios');
 const router = express.Router();
 
 // return all favorite images
-router.get('/', (req, res) => {
+router.get('/:q', (req, res) => {
+    console.log('parms is', req.params);
     console.log('req body is', req.body);
-    const searchTerm = req.body.query;
+    const searchTerm = req.params.q;
     console.log(`query is ${searchTerm}`);
     const GIPHY_URL = `https://api.giphy.com/v1/gifs/search?api_key=${process.env.GIPHY_API_KEY}&q=${searchTerm}&limit=10`;
     console.log(`GIPHY URL is ${GIPHY_URL}`);
