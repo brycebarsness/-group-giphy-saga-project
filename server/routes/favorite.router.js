@@ -21,9 +21,9 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   const gifToAdd = req.body;
   console.log(`Adding new favorite`, gifToAdd);
-  let queryText = `INSERT INTO "favorites" ("url", "title", "category_id") VALUES ($1, $2, 3$)`;
+  let queryText = `INSERT INTO "favorites" ("url", "alt_text") VALUES ($1, $2)`;
   pool
-    .query(sqlText, [gifToAdd.images.downsized_medium.url, gifToAdd.title])
+    .query(queryText, [gifToAdd.images.downsized_medium.url, gifToAdd.title])
     .then((result) => {
       console.log("added gif to the favorite table");
       res.sendStatus(201);
