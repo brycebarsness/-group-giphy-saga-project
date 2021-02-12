@@ -13,6 +13,16 @@ function* rootSaga() {
   yield takeEvery("FETCH_FAV", fetchFavSaga);
   yield takeEvery("ADD_FAV", addFavSaga);
   yield takeEvery("SET_CATEGORY", setCategorySaga);
+  yield takeEvery("DELETE_FAV", deleteFavSaga);
+}
+
+function* deleteFavSaga(action) {
+  try {
+      yield axios.delete(`api/favorite/${action.payload}`);
+      yield put({type: 'FETCH_FAV'})
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function* fetchFavSaga(action) {
