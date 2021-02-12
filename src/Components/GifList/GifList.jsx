@@ -1,12 +1,23 @@
 import { useSelector } from 'react-redux'
-import './GifList.css'
 import { useDispatch } from 'react-redux'
-
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
+import './GifList.css'
 function GifList() {
 
     const gifList = useSelector(store => store.searchedGifList)
+    
     const dispatch = useDispatch()
-       
+
+    const useStyles = makeStyles((theme) => ({
+        button: {
+          margin: theme.spacing(1),
+        },
+      }));
+      
+    const classes = useStyles();
+      
 
     return (
         <>
@@ -15,7 +26,16 @@ function GifList() {
                     {gifList[0].map((gif, i) =>
                         <div key={i} className="gifimage">
                             <img src={gif.images.downsized_medium.url} />
-                            <button onClick={() => dispatch({type: 'ADD_FAV', payload: gif})}>Fav</button>
+                            <Button
+                                onClick={() => dispatch({ type: 'ADD_FAV', payload: gif })}
+                                style={{
+                                    color: "white",
+                                    backgroundColor:"#FF00CC",
+                                }}
+                                variant="contained"
+                                className={classes.button}
+                                endIcon={<FavoriteRoundedIcon/>}
+                            >Favorite</Button>
                         </div>
                     )}
                 </div>}
