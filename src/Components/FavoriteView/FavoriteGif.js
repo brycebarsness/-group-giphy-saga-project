@@ -39,7 +39,7 @@ function FavoriteGif({ gif }) {
         Unfavorite
       </button>
       <br />
-      <label>Category: {category.name}</label>
+      <label>Category: {category}</label>
     </div>
   );
 }
