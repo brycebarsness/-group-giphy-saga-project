@@ -16,10 +16,12 @@ router.get("/", (req, res) => {
       res.sendStatus(500);
     });
 });
-router.put(`/api/category`, (req, res) => {
-  let queryText = `UPDATE "favorite" SET "category_id" = $1 WHERE "id" = $2`;
+router.put(`/:id`, (req, res) => {
+  let queryText = `UPDATE "favorites" SET "category_id" = $1 WHERE "id" = $2`;
+  console.log(req.body, req.params);
+
   pool
-    .query(queryText, req.body)
+    .query(queryText, [req.body.category, req.params.id])
     .then((result) => {
       res.sendStatus(200);
     })
