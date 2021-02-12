@@ -1,0 +1,15 @@
+header {
+    background-color: rgb(34, 34, 34);
+    text-align: center;
+    color:rgb(0, 183, 255);
+}
+
+header li {
+    display: inline-block;
+    margin: 3px;
+    list-style-type: none;
+}
+
+main {
+    background-color: blue;
+}

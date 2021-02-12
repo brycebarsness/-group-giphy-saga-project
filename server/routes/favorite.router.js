@@ -23,7 +23,7 @@ router.post("/", (req, res) => {
   console.log(`Adding new favorite`, gifToAdd);
   let queryText = `INSERT INTO "favorites" ("url", "title", "category_id") VALUES ($1, $2, 3$)`;
   pool
-    .query(queryText, [gifToAdd.url, gifToAdd.title, gifToAdd.category_id])
+    .query(sqlText, [gifToAdd.images.downsized_medium.url, gifToAdd.title])
     .then((result) => {
       console.log("added gif to the favorite table");
       res.sendStatus(201);
