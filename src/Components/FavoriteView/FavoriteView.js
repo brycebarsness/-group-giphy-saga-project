@@ -13,10 +13,11 @@ function FavoriteView() {
   }, []);
 
   return (
+ featureFavorites
     <div className="gif-gallery">
       {FavReducer.map((gif) => (
         <FavoriteGif gif={gif} key={gif.id} />
-      ))}
+     ))}
     </div>
   );
 }
