@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
 // add a new favorite
 router.post("/", (req, res) => {
   const gifToAdd = req.body;
-  let sqlText = `INSERT INTO favorite (url, alt_text) VALUES ($1, $2)`;
+  let sqlText = `INSERT INTO favorites (url, alt_text) VALUES ($1, $2)`;
   pool
     .query(sqlText, [gifToAdd.images.downsized_medium.url, gifToAdd.title])
     .then((result) => {
@@ -36,8 +36,15 @@ router.put("/:favId", (req, res) => {
 });
 
 // delete a favorite
-router.delete("/", (req, res) => {
-  res.sendStatus(200);
+router.delete("/:id", (req, res) => {
+  console.log(`deleting gif with id ${req.params.id}`);
+  queryText = `DELETE FROM favorites WHERE id=${req.params.id}`
+  pool.query(queryText).then((response) => {
+    res.sendStatus(204)
+  }).catch ((err) => {
+    console.log(err);
+    res.sendStatus(500);
+  })
 });
 
 module.exports = router;

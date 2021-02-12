@@ -45,6 +45,7 @@ function FavoriteView() {
           <button onClick={(event) => dispatchCategory(event, gif.id)}>
             Save
           </button>
+          <button onClick={() => dispatch({type:'DELETE_FAV', payload: gif.id})}>Unfavorite</button>
           <br />
           <label>Category: {gif.name}</label>
         </div>
