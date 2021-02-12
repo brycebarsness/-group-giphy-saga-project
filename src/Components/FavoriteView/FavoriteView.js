@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import './FavoriteView.css'
 
 function FavoriteView() {
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState({ category: "" });
 
   const dispatch = useDispatch();
   const FavReducer = useSelector((store) => store.setFavReducer);
@@ -14,7 +14,7 @@ function FavoriteView() {
   }, []);
 
   function handleChange(event) {
-    setCategory(event.target.value);
+    setCategory({ category: event.target.value });
   }
 
   function dispatchCategory(event, id) {
@@ -22,7 +22,7 @@ function FavoriteView() {
       type: "SET_CATEGORY",
       payload: [category, id],
     });
-    setCategory("");
+    setCategory({ category: "" });
   }
 
   return (
@@ -47,11 +47,12 @@ function FavoriteView() {
               <button onClick={(event) => dispatchCategory(event, gif.id)}>
                 Save
           </button>
-              <label>Category: {gif.name}</label>
-            </div>
-          </div>
-        ))}
-      </div>
+          <button onClick={() => dispatch({type:'DELETE_FAV', payload: gif.id})}>Unfavorite</button>
+          <br />
+          <label>Category: {gif.name}</label>
+        </div>
+      ))}
+    </div>
   );
 }
 export default FavoriteView;

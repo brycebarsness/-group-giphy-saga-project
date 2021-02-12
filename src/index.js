@@ -6,13 +6,23 @@ import axios from "axios";
 import logger from "redux-logger";
 import createSagaMiddleware from "redux-saga";
 import { takeEvery, put } from "redux-saga/effects";
-import App from './Components/App/App';
+import App from "./Components/App/App";
 
 function* rootSaga() {
   yield takeEvery("FETCH_GIFS", fetchGiphySaga);
   yield takeEvery("FETCH_FAV", fetchFavSaga);
   yield takeEvery("ADD_FAV", addFavSaga);
   yield takeEvery("SET_CATEGORY", setCategorySaga);
+  yield takeEvery("DELETE_FAV", deleteFavSaga);
+}
+
+function* deleteFavSaga(action) {
+  try {
+      yield axios.delete(`api/favorite/${action.payload}`);
+      yield put({type: 'FETCH_FAV'})
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function* fetchFavSaga(action) {
@@ -72,14 +82,14 @@ const setFavReducer = (state = [], action) => {
 };
 
 const searchedGifList = (state = [], action) => {
-    switch (action.type) {
-        case "SEARCH_GIF":
-            console.log(`Getting gifs...`);
-            return [action.payload]
-        default:
-            return state;
-    }
-}
+  switch (action.type) {
+    case "SEARCH_GIF":
+      console.log(`Getting gifs...`);
+      return [action.payload];
+    default:
+      return state;
+  }
+};
 
 const SagaMiddleware = createSagaMiddleware();
 
@@ -88,7 +98,7 @@ const store = createStore(
     fetchReducer,
     setFavReducer,
     searchedGifList,
-    // favGifList,
+    //favGifList,
   }),
   applyMiddleware(logger, SagaMiddleware)
 );
