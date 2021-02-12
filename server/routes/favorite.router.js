@@ -41,8 +41,15 @@ router.put("/:favId", (req, res) => {
 });
 
 // delete a favorite
-router.delete("/", (req, res) => {
-  res.sendStatus(200);
+router.delete("/:id", (req, res) => {
+  console.log(`deleting gif with id ${req.params.id}`);
+  queryText = `DELETE FROM favorites WHERE id=${req.params.id}`
+  pool.query(queryText).then((response) => {
+    res.sendStatus(204)
+  }).catch ((err) => {
+    console.log(err);
+    res.sendStatus(500);
+  })
 });
 
 module.exports = router;

@@ -13,6 +13,16 @@ function* rootSaga() {
   yield takeEvery("FETCH_FAV", fetchFavSaga);
   yield takeEvery("ADD_FAV", addFavSaga);
   yield takeEvery("SET_CATEGORY", setCategorySaga);
+  yield takeEvery("DELETE_FAV", deleteFavSaga);
+}
+
+function* deleteFavSaga(action) {
+  try {
+    yield axios.delete(`api/favorite/${action.payload}`);
+    yield put({ type: "FETCH_FAV" });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function* fetchFavSaga(action) {
@@ -45,7 +55,7 @@ function* addFavSaga(action) {
 function* setCategorySaga(action) {
   console.log("in setCategorySaga");
   try {
-    yield axios.put(`/api/favorite/${action.payload[1]}`, action.payload[0]);
+    yield axios.put(`/api/category/${action.payload.id}`, action.payload);
   } catch (error) {
     console.log("get SEARCH failed", error);
   }
