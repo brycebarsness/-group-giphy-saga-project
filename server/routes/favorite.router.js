@@ -5,18 +5,23 @@ const router = express.Router();
 
 // return all favorite images
 router.get("/", (req, res) => {
-  queryText = `SELECT * FROM favorite`
-  pool.query(queryText).then ((response) => {
-    res.send(response.rows)
-  }).catch((err) => {
-    console.log(err);
-  })
+  const queryText = `SELECT * FROM favorites`;
+  pool
+    .query(queryText)
+    .then((response) => {
+      res.send(response.rows);
+    })
+    .catch((error) => {
+      console.log(`Error on query ${error}`);
+      res.sendStatus(500);
+    });
 });
 
 // add a new favorite
 router.post("/", (req, res) => {
   const gifToAdd = req.body;
-  let sqlText = `INSERT INTO favorite (url, alt_text) VALUES ($1, $2)`;
+  console.log(`Adding new favorite`, gifToAdd);
+  let queryText = `INSERT INTO "favorites" ("url", "title", "category_id") VALUES ($1, $2, 3$)`;
   pool
     .query(sqlText, [gifToAdd.images.downsized_medium.url, gifToAdd.title])
     .then((result) => {
