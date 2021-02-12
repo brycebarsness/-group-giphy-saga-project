@@ -5,7 +5,12 @@ const router = express.Router();
 
 // return all favorite images
 router.get("/", (req, res) => {
-  res.sendStatus(200);
+  queryText = `SELECT * FROM favorite`
+  pool.query(queryText).then ((response) => {
+    res.send(response.rows)
+  }).catch((err) => {
+    console.log(err);
+  })
 });
 
 // add a new favorite
@@ -13,7 +18,7 @@ router.post("/", (req, res) => {
   const gifToAdd = req.body;
   let sqlText = `INSERT INTO favorite (url, alt_text) VALUES ($1, $2)`;
   pool
-    .query(sqlText, [gifToAdd.url, gifToAdd.title])
+    .query(sqlText, [gifToAdd.images.downsized_medium.url, gifToAdd.title])
     .then((result) => {
       console.log("added gif to the favorite table");
       res.sendStatus(201);

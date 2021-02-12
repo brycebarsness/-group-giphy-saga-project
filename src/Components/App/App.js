@@ -10,9 +10,12 @@ function App(props) {
   return (
     <div>
       <h1>Giphy Search!</h1>
-      <SearchGifs />
-      <GifList />
+
       <Router>
+        <Route exact path="/">
+          <SearchGifs />
+          <GifList />
+        </Route>
         <h1>Giphy Search!</h1>
 
         <div className="content-container">
