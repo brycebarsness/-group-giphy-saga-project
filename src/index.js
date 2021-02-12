@@ -6,7 +6,7 @@ import axios from "axios";
 import logger from "redux-logger";
 import createSagaMiddleware from "redux-saga";
 import { takeEvery, put } from "redux-saga/effects";
-import App from './Components/App/App';
+import App from "./Components/App/App";
 
 function* rootSaga() {
   yield takeEvery("FETCH_GIFS", fetchGiphySaga);
@@ -72,14 +72,14 @@ const setFavReducer = (state = [], action) => {
 };
 
 const searchedGifList = (state = [], action) => {
-    switch (action.type) {
-        case "SEARCH_GIF":
-            console.log(`Getting gifs...`);
-            return [action.payload]
-        default:
-            return state;
-    }
-}
+  switch (action.type) {
+    case "SEARCH_GIF":
+      console.log(`Getting gifs...`);
+      return [action.payload];
+    default:
+      return state;
+  }
+};
 
 const SagaMiddleware = createSagaMiddleware();
 
@@ -88,7 +88,7 @@ const store = createStore(
     fetchReducer,
     setFavReducer,
     searchedGifList,
-    // favGifList,
+    //favGifList,
   }),
   applyMiddleware(logger, SagaMiddleware)
 );

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 function FavoriteView() {
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState({ category: "" });
 
   const dispatch = useDispatch();
   const FavReducer = useSelector((store) => store.setFavReducer);
@@ -11,7 +11,7 @@ function FavoriteView() {
   }, []);
 
   function handleChange(event) {
-    setCategory(event.target.value);
+    setCategory({ category: event.target.value });
   }
 
   function dispatchCategory(event, id) {
@@ -19,7 +19,7 @@ function FavoriteView() {
       type: "SET_CATEGORY",
       payload: [category, id],
     });
-    setCategory("");
+    setCategory({ category: "" });
   }
 
   return (
