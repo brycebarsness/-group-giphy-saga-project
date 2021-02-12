@@ -11,14 +11,13 @@ function SearchGifs() {
     const history = useHistory();
     const getGif = (search) => {
         //dispatch ({type: 'SEARCH_GIFS', payload: search})
-        console.log(`incoming search is ${search}`);
+        //console.log(`incoming search is ${search}`);
         axios.get(`/api/gifs/${search}`).then(response => {
-            console.log(response);
+            //console.log(response);
             dispatch({ type: 'SEARCH_GIF', payload: response.data })
         })
         history.push('/searchlist');
     }
-
 
     return (
         <>
