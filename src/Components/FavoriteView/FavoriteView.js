@@ -6,6 +6,8 @@ function FavoriteView() {
 
   const dispatch = useDispatch();
   const FavReducer = useSelector((store) => store.setFavReducer);
+  console.log('favreducer is', FavReducer);
+
   useEffect(() => {
     dispatch({ type: "FETCH_FAV" });
   }, []);
