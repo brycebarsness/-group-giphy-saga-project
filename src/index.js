@@ -65,7 +65,7 @@ const fetchReducer = (state = [], action) => {
 const setFavReducer = (state = [], action) => {
   switch (action.type) {
     case "SET_FAVS":
-      return [...action.payload];
+      return action.payload;
     default:
       return state;
   }

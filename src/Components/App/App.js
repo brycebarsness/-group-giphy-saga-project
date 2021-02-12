@@ -20,7 +20,6 @@ function App(props) {
 
         <div className="content-container">
           <Route path="/favorites" component={FavoriteView} />
-          <FavoriteView />
         </div>
       </Router>
     </div>
