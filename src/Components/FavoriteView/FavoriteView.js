@@ -26,8 +26,8 @@ function FavoriteView() {
 
   return (
     <div className="gif-gallery">
-      {FavReducer.map((gif) => (
-        <div className="gif-gallery" key={gif.id}>
+      {FavReducer.map((gif , i) => (
+        <div className="gif-gallery" key={i}>
           <img src={gif.url} alt={gif.alt_text} /> <br />
           <label>Assign Category:</label>
           <select

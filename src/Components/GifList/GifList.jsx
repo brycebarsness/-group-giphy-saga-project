@@ -10,7 +10,7 @@ function GifList() {
 
     return (
         <>
-            <div>
+            <div className='giflist'>
                 {(gifList[0]) && <div>
                     {gifList[0].map((gif, i) =>
                         <div key={i} className="gifimage">
