@@ -6,10 +6,16 @@ header {
 
 header li {
     display: inline-block;
-    margin: 3px;
     list-style-type: none;
+    font-size: small;
 }
 
-main {
-    background-color: blue;
+body {
+    background-color: rgb(163, 163, 255);
+}
+
+.ToolBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

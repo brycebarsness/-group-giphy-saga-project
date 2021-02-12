@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import FavoriteGif from "./FavoriteGif";
+import "./FavoriteView.css";
 
 function FavoriteView() {
   const dispatch = useDispatch();
