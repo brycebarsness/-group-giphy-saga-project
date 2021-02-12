@@ -19,7 +19,7 @@ function* rootSaga() {
 function* deleteFavSaga(action) {
   try {
       yield axios.delete(`api/favorite/${action.payload}`);
-      yield put({type: 'FETCH_FAVS'})
+      yield put({type: 'FETCH_FAV'})
   } catch (error) {
     console.log(error);
   }
